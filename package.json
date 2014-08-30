@@ -1,4 +1,35 @@
 {
+    "author": {
+        "name": "Max Kitsch",
+        "email": "max.kitsch@gmail.com"
+    },
     "name": "brest-passport",
-    "version": "0.0.1"
+    "description": "Express passport auth wrapper for the bREST API",
+    "version": "0.0.1",
+    "repository": {
+        "type" : "git",
+        "url": "https://github.com/MaximTovstashev/brest-passport.git"
+    },
+    "main": "index.js",
+    "dependencies": {
+        "passport": "~0.2.0",
+        "express-session": "~1.0.0"
+    },
+    "devDependencies": {
+        "passport": "~0.2.0",
+        "express-session": "~1.0.0"
+    },
+    "keywords": [
+        "api",
+        "app",
+        "brest",
+        "express",
+        "rest",
+        "restful",
+        "validate"
+    ],
+    "optionalDependencies": {},
+    "engines": {
+        "node": "*"
+    }
 }
