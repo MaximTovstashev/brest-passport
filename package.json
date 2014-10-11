@@ -5,7 +5,7 @@
   },
   "name": "brest-passport",
   "description": "Express passport auth wrapper for the bREST API",
-  "version": "0.0.1b",
+  "version": "0.0.1d",
   "repository": {
     "type": "git",
     "url": "https://github.com/MaximTovstashev/brest-passport.git"
@@ -13,11 +13,13 @@
   "main": "index.js",
   "dependencies": {
     "passport": "~0.2.0",
-    "express-session": "~1.0.0"
+    "express-session": "~1.0.0",
+    "cookie-parser": "*"
   },
   "devDependencies": {
     "passport": "~0.2.0",
-    "express-session": "~1.0.0"
+    "express-session": "~1.0.0",
+    "cookie-parser": "*"
   },
   "keywords": [
     "api",
