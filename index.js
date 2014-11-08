@@ -9,7 +9,7 @@ function isFunction(functionToCheck) {
 
 var BrestPassport =
 {
-    init: function(brest){
+    init: function(brest, callback){
         brest.getApp().use(cookieParser());
         var SessionStore = brest.getSetting('passport.store');
         var sessionSettings = {
@@ -20,6 +20,7 @@ var BrestPassport =
         brest.getApp().use(session(sessionSettings));
         brest.getApp().use(passport.initialize());
         brest.getApp().use(passport.session());
+        callback();
     },
 
     method: {
