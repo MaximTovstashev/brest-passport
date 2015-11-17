@@ -17,6 +17,9 @@ var BrestPassport =
             cookie: { maxAge:  brest.getSetting('passport.maxAge', 2629743830)}
         };
         if (isFunction(SessionStore)) sessionSettings.store = new SessionStore();
+        if (brest.getSetting('passport.override_brest_defaults')) {
+            sessionSettings = brest.getSetting('passport');
+        }
         brest.getApp().use(session(sessionSettings));
         brest.getApp().use(passport.initialize());
         brest.getApp().use(passport.session());
