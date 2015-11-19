@@ -11,14 +11,15 @@ var BrestPassport =
 {
     init: function(brest, callback){
         brest.getApp().use(cookieParser());
-        var SessionStore = brest.getSetting('passport.store');
-        var sessionSettings = {
-            secret: brest.getSetting('passport.secret','defaultpassportsecret'),
-            cookie: { maxAge:  brest.getSetting('passport.maxAge', 2629743830)}
-        };
-        if (isFunction(SessionStore)) sessionSettings.store = new SessionStore();
-        if (brest.getSetting('passport.override_brest_defaults')) {
-            sessionSettings = brest.getSetting('passport');
+        var sessionSettings = brest.getSetting('passport', {
+            secret: 'defaultpassportsecret',
+            cookie: { maxAge:  2629743830},
+            store: require('express-session/session/store')
+        });
+        if (isFunction(sessionSettings.store)) {
+            var SessionStore = sessionSettings.store(session);
+            var sessionStoreSettings = sessionSettings.storeSettingsKey ? brest.getSetting(sessionSettings.storeSettingsKey) : null;
+            sessionSettings.store = new SessionStore(sessionStoreSettings);
         }
         brest.getApp().use(session(sessionSettings));
         brest.getApp().use(passport.initialize());
@@ -68,7 +69,6 @@ var BrestPassport =
     }
 };
 
-BrestPassport.store = require('express-session/session/store');
 BrestPassport.passport = passport;
 
 module.exports = BrestPassport;
