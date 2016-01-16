@@ -39,7 +39,6 @@ var BrestPassport =
          * @param callback
          */
         authenticate: function(method, req, callback){
-            console.log('incoming');
             var i;
             if (_.isEmpty(req.user)) {
                 BrestPassport.brest.emit('passport:fail', req.user);
