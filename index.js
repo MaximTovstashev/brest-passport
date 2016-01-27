@@ -50,11 +50,13 @@ var BrestPassport =
                     return callback();
                 }
 
-                if (method.description.roles) {
+                var methodFields = method.getFields();
+
+                if (methodFields.roles) {
                     if (req.user.roles) {
                         var roleChecked = false;
                         for (i = 0; i < req.user.roles.length; i++) {
-                            if (method.description.roles.indexOf(req.user.roles[i]) > -1) {
+                            if (methodFields.roles.indexOf(req.user.roles[i]) > -1) {
                                 roleChecked = true;
                                 break;
                             }
@@ -66,9 +68,9 @@ var BrestPassport =
                     }
                 }
 
-                if (method.description.denyRoles) {
+                if (methodFields.denyRoles) {
                     for (i = 0; i < req.user.roles.length; i++) {
-                        if (method.description.denyRoles.indexOf(req.user.roles[i]) > -1) {
+                        if (methodFields.denyRoles.indexOf(req.user.roles[i]) > -1) {
                             BrestPassport.brest.emit('passport:fail', req.user);
                             return callback({denyRoles: 'failed'});
                         }
