@@ -1,7 +1,8 @@
 var _ = require('lodash'),
     cookieParser = require('cookie-parser'),
     passport = require('passport'),
-    session  = require('express-session');
+    session  = require('express-session'),
+    util = require('util');
 
 function isFunction(functionToCheck) {
     var getType = {};
@@ -42,7 +43,7 @@ var BrestPassport =
             var i;
             if (_.isEmpty(req.user)) {
                 BrestPassport.brest.emit('passport:fail', req.user);
-                return callback(true);
+                return callback({denied: "Authorisation failed"});
             } else {
 
                 if (req.user.roles && req.user.roles.indexOf('admin') > -1) {
@@ -63,7 +64,7 @@ var BrestPassport =
                         }
                         if (!roleChecked) {
                             BrestPassport.brest.emit('passport:fail', req.user);
-                            return callback({roles: 'failed'});
+                            return callback({denied: "User has no role allowed for this method"});
                         }
                     }
                 }
@@ -72,7 +73,7 @@ var BrestPassport =
                     for (i = 0; i < req.user.roles.length; i++) {
                         if (methodFields.denyRoles.indexOf(req.user.roles[i]) > -1) {
                             BrestPassport.brest.emit('passport:fail', req.user);
-                            return callback({denyRoles: 'failed'});
+                            return callback({denied: "User has some roles that are not allowed for this method"});
                         }
                     }
                 }
