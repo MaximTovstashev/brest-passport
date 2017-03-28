@@ -5,7 +5,7 @@
   },
   "name": "brest-passport",
   "description": "Express passport auth wrapper for the bREST API",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/MaximTovstashev/brest-passport.git"
@@ -16,12 +16,6 @@
     "express-session": "^1.0.0",
     "cookie-parser": "*",
     "lodash": "^4.0.0"
-  },
-  "devDependencies": {
-    "passport": "^0.2.0",
-    "express-session": "^1.0.0",
-    "cookie-parser": "*",
-    "lodash": "*"
   },
   "keywords": [
     "api",
@@ -40,10 +34,7 @@
   "bugs": {
     "url": "https://github.com/MaximTovstashev/brest-passport/issues"
   },
-  "readme": "ERROR: No README data found!",
+  "readme": "README.md",
   "homepage": "https://github.com/MaximTovstashev/brest-passport",
-  "_id": "brest-passport@0.0.1",
-  "scripts": {},
-  "_shasum": "b641d23f5de440ac3fd16169811920b0ab7af02d",
-  "_from": "brest-passport@0.0.1"
+  "scripts": {}
 }
