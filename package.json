@@ -5,7 +5,7 @@
   },
   "name": "brest-passport",
   "description": "Express passport auth wrapper for the bREST API",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/MaximTovstashev/brest-passport.git"
@@ -28,9 +28,8 @@
   ],
   "optionalDependencies": {},
   "engines": {
-    "node": "*"
+    "node": ">6.0.0"
   },
-  "gitHead": "bc26b93937420ee66c122b95380883cfb12c9192",
   "bugs": {
     "url": "https://github.com/MaximTovstashev/brest-passport/issues"
   },
