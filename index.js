@@ -51,7 +51,10 @@ const BrestPassport =
           return callback({denied: 'Authorisation failed'});
         } else {
 
-          if (req.user.roles && req.user.roles.indexOf(BrestPassport.adminRole) > -1) {
+          let roles = req.user.roles || req.user.role ? [req.user.role] : [];
+
+
+          if (roles.indexOf(BrestPassport.adminRole) > -1) {
             BrestPassport.brest.emit(EVENT_OK, req.user);
             return callback();
           }
@@ -59,10 +62,10 @@ const BrestPassport =
           const methodFields = method.getFields();
 
           if (methodFields.roles) {
-            if (req.user.roles) {
+            if (roles.length) {
               let roleChecked = false;
-              for (i = 0; i < req.user.roles.length; i++) {
-                if (methodFields.roles.indexOf(req.user.roles[i]) > -1) {
+              for (i = 0; i < roles.length; i++) {
+                if (methodFields.roles.indexOf(roles[i]) > -1) {
                   roleChecked = true;
                   break;
                 }
@@ -75,8 +78,8 @@ const BrestPassport =
           }
 
           if (methodFields.denyRoles) {
-            for (i = 0; i < req.user.roles.length; i++) {
-              if (methodFields.denyRoles.indexOf(req.user.roles[i]) > -1) {
+            for (i = 0; i < roles.length; i++) {
+              if (methodFields.denyRoles.indexOf(roles[i]) > -1) {
                 BrestPassport.brest.emit(EVENT_FAIL, req.user);
                 return callback({denied: 'User has roles that are not allowed for this method'});
               }

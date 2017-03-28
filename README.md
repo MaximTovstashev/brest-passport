@@ -48,5 +48,10 @@ brest.on('ready', function(){
 });
 ```
 
+## Changes
+
+### 0.1.1
+- Can use `user.role` for a single role check
+
 
 
