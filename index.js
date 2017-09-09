@@ -14,8 +14,9 @@ function isFunction(functionToCheck) {
 
 const BrestPassport =
   {
-    init: function(brest, callback){
-      brest.getApp().use(cookieParser());
+    name: 'brest-passport',
+    before_api_init: function(brest, callback){
+      brest.app.use(cookieParser());
       const sessionSettings = brest.getSetting('passport', {
         secret: 'defaultpassportsecret',
         cookie: { maxAge:  2629743830},
@@ -27,15 +28,20 @@ const BrestPassport =
         const sessionStoreSettings = sessionSettings.storeSettingsKey ? brest.getSetting(sessionSettings.storeSettingsKey) : null;
         sessionSettings.store = new SessionStore(sessionStoreSettings);
       }
-      brest.getApp().use(session(sessionSettings));
-      brest.getApp().use(passport.initialize());
-      brest.getApp().use(passport.session());
+      brest.app.use(session(sessionSettings));
+      brest.app.use(passport.initialize());
+      brest.app.use(passport.session());
       BrestPassport.brest = brest;
       BrestPassport.adminRole = sessionSettings.adminRole;
       callback();
     },
 
-    method: {
+    // init: (brest, callback) => {
+    //   console.log('PASSPORT INIT');
+    //   callback();
+    // },
+
+    endpoint: {
 
         /**
          * Function is called after the express.js middleware and before the Brest handler.
