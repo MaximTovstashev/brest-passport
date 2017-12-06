@@ -15,6 +15,7 @@ function isFunction(functionToCheck) {
 const BrestPassport =
   {
     name: 'brest-passport',
+
     before_api_init: function(brest, callback){
       brest.app.use(cookieParser());
       const sessionSettings = brest.getSetting('passport', {
@@ -36,10 +37,12 @@ const BrestPassport =
       callback();
     },
 
-    // init: (brest, callback) => {
-    //   console.log('PASSPORT INIT');
-    //   callback();
-    // },
+    ready: function(brest, callback) {
+      const event = brest.getSetting('passport.ready');
+      if (typeof event === 'function') {
+        event(BrestPassport, callback);
+      }
+    },
 
     endpoint: {
 
@@ -65,7 +68,7 @@ const BrestPassport =
             return callback();
           }
 
-          const methodFields = method.getFields();
+          const methodFields = method.fields;
 
           if (methodFields.roles) {
             if (roles.length) {
