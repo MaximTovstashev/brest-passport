@@ -41,6 +41,8 @@ const BrestPassport =
       const event = brest.getSetting('passport.ready');
       if (typeof event === 'function') {
         event(BrestPassport, callback);
+      } else {
+        callback();
       }
     },
 
