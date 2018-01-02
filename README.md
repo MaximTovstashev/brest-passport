@@ -50,6 +50,9 @@ brest.on('ready', function(){
 
 ## Changes
 
+### 1.0.0-alpha-4
+- Fixed issue with incorrect roles list on check
+
 ### 0.1.1
 - Can use `user.role` for a single role check
 

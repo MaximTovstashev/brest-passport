@@ -61,9 +61,7 @@ const BrestPassport =
           BrestPassport.brest.emit(EVENT_FAIL, req.user);
           return callback({denied: 'Authorisation failed'});
         } else {
-
-          let roles = req.user.roles || req.user.role ? [req.user.role] : [];
-
+          let roles = req.user.roles || (req.user.role ? [req.user.role] : []);
 
           if (roles.indexOf(BrestPassport.adminRole) > -1) {
             BrestPassport.brest.emit(EVENT_OK, req.user);
